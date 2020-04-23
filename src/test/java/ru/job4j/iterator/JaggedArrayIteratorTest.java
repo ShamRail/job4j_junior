@@ -11,12 +11,12 @@ public class JaggedArrayIteratorTest {
     private Iterator<Integer> it;
 
     @Before
-    public void setUp(){
-        it = new MatrixIterator(new int[][]{{1}, {3, 4}, {}, {}, {7}});
+    public void setUp() {
+        it = new MatrixIterator(new int[][] {{1}, {3, 4}, {}, {}, {7}});
     }
 
     @Test
-    public void testsThatNextMethodDoesntDependsOnPriorHasNextInvocation () {
+    public void testsThatNextMethodDoesntDependsOnPriorHasNextInvocation() {
         assertThat(it.next(), is(1));
         assertThat(it.next(), is(3));
         assertThat(it.next(), is(4));
@@ -24,7 +24,7 @@ public class JaggedArrayIteratorTest {
     }
 
     @Test
-    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder () {
+    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
         assertThat(it.hasNext(), is(true));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
@@ -34,7 +34,7 @@ public class JaggedArrayIteratorTest {
     }
 
     @Test
-    public void hasNextNextSequentialInvocation () {
+    public void hasNextNextSequentialInvocation() {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(true));
