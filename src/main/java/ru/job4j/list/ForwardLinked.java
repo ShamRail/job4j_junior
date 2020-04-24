@@ -65,7 +65,6 @@ public class ForwardLinked<T> implements Iterable<T> {
         return value;
     }
 
-
     public T deleteLast() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -86,6 +85,10 @@ public class ForwardLinked<T> implements Iterable<T> {
         size--;
         modCount++;
         return value;
+    }
+
+    public int size() {
+        return this.size;
     }
 
     @Override
