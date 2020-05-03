@@ -1,5 +1,8 @@
 package ru.job4j.socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.job4j.logging.UsageLog4j;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,7 +15,9 @@ public class EchoServer {
 
     private static final String DATA_PATTERN = ".+\\?msg=.+ HTTP/1.1";
 
-    public static void main(String[] args) throws IOException {
+    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
@@ -38,6 +43,8 @@ public class EchoServer {
                     }
                 }
             }
+        } catch (Exception e) {
+            LOG.error("Something went wrong ...", e);
         }
     }
 }
