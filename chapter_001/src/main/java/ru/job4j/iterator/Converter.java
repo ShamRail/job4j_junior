@@ -1,6 +1,7 @@
 package ru.job4j.iterator;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

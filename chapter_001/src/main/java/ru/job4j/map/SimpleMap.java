@@ -31,11 +31,14 @@ public class SimpleMap<K, V> implements Iterable<SimpleMap.Entry> {
     public boolean put(K key, V value) {
         grow();
         int h = hash(key);
-        if (!(table[h] == null || ((key == table[h].key) || table[h].key.hashCode() == key.hashCode() && key.equals(table[h].key)))) {
+        if (!(table[h] == null
+                || ((key == table[h].key) || table[h].key.hashCode() == key.hashCode() && key.equals(table[h].key)))) {
             return false;
         }
+        if (table[h] == null) {
+            size++;
+        }
         table[h] = new Entry<>(key, value, h);
-        size++;
         modCount++;
         return true;
     }

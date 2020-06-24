@@ -1,5 +1,7 @@
 package ru.job4j.gc;
 
+import java.util.Arrays;
+
 public class MemoryUsage {
 
     /*
@@ -53,9 +55,7 @@ public class MemoryUsage {
         }
         info();
     }
-
 }
-
 // Нужно найти информацию. Сколько памяти занимает пустой объект без полей
 /*
 
