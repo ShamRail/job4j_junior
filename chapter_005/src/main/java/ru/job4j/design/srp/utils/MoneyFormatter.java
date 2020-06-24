@@ -1,4 +1,4 @@
-package ru.job4j.design.srp;
+package ru.job4j.design.srp.utils;
 
 public class MoneyFormatter {
 

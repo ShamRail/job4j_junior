@@ -1,6 +1,10 @@
 package ru.job4j.design.srp;
 
 import org.junit.Test;
+import ru.job4j.design.srp.report.AccountantReport;
+import ru.job4j.design.srp.report.Report;
+import ru.job4j.design.srp.store.Employer;
+import ru.job4j.design.srp.store.MemStore;
 
 import java.util.Calendar;
 

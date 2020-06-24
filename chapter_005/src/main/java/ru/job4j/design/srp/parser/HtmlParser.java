@@ -1,18 +1,13 @@
-package ru.job4j.design.srp;
+package ru.job4j.design.srp.parser;
 
+import ru.job4j.design.srp.store.Employer;
+
+import java.util.List;
 import java.util.StringJoiner;
-import java.util.function.Predicate;
 
-public class ProgrammerReport implements Report {
-
-    private Store store;
-
-    public ProgrammerReport(Store store) {
-        this.store = store;
-    }
-
+public class HtmlParser implements Parser {
     @Override
-    public String generate(Predicate<Employer> filter) {
+    public String parse(List<Employer> employers) {
         StringJoiner html = new StringJoiner(System.lineSeparator());
 
         html.add("<!DOCTYPE html>");
@@ -31,7 +26,7 @@ public class ProgrammerReport implements Report {
         html.add("<th>Salary</th>");
         html.add("</tr>");
 
-        for (Employer employer : store.findBy(filter)) {
+        for (Employer employer : employers) {
             html.add("<tr>");
             html.add(String.format("<td>%s</td>", employer.getName()));
             html.add(String.format("<td>%s</td>", employer.getHired()));
