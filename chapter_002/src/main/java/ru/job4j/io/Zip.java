@@ -34,13 +34,17 @@ public class Zip {
         }
     }
 
+    private static List<Path> findFiles(ArgZip argZip) throws IOException {
+        SearchFiles searcher = new SearchFiles(p -> !p.toFile().getName().endsWith(argZip.exclude()));
+        Files.walkFileTree(Path.of(argZip.directory()), searcher);
+        return searcher.getPaths();
+    }
+
     public static void main(String[] args) throws IOException {
         ArgZip argZip = new ArgZip(args);
         argZip.valid();
 
-        SearchFiles searcher = new SearchFiles(p -> !p.toFile().getName().endsWith(argZip.exclude()));
-        Files.walkFileTree(Path.of(argZip.directory()), searcher);
-        List<Path> files = searcher.getPaths();
+        List<Path> files = findFiles(argZip);
 
         Zip zip = new Zip();
         zip.packFiles(
@@ -48,4 +52,5 @@ public class Zip {
                 new File(argZip.output())
         );
     }
+
 }

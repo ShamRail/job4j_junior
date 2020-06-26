@@ -6,6 +6,7 @@ import ru.job4j.logging.UsageLog4j;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Pattern;
 
 public class EchoServer {
 
@@ -13,7 +14,7 @@ public class EchoServer {
 
     private static final String EXIT = "Exit";
 
-    private static final String DATA_PATTERN = ".+\\?msg=.+ HTTP/1.1";
+    private static final Pattern DATA_PATTERN = Pattern.compile(".+\\?msg=.+ HTTP/1.1");
 
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
@@ -25,7 +26,7 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str = in.readLine();
-                    if (str != null && str.matches(DATA_PATTERN)) {
+                    if (str != null && DATA_PATTERN.matcher(str).matches()) {
                         String argument = str.substring(
                                 str.lastIndexOf('=') + 1,
                                 str.lastIndexOf(' ')
