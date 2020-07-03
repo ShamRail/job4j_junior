@@ -33,7 +33,6 @@ public class SimpleMenuTest {
         menu.add("B", "C", stub);
         menu.add("A", "D", stub);
         String out = menu.ordered();
-        System.out.println(out);
         String expect = String.format(
                 "%s%n%s%n%s%n%s%n",
                 "stub",
