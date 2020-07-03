@@ -8,8 +8,7 @@ import ru.job4j.design.srp.store.MemStore;
 
 import java.util.Calendar;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static ru.job4j.design.srp.utils.DateFormatter.format;
 
 public class AccountantReportTest {
@@ -29,7 +28,7 @@ public class AccountantReportTest {
                 .append(format(worker.getFired())).append(";")
                 .append("2,50").append(";")
                 .append(System.lineSeparator());
-        assertThat(engine.generate(em -> true), is(expect.toString()));
+        assertEquals(engine.generate(em -> true), expect.toString());
     }
 
 }
