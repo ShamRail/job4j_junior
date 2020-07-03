@@ -6,6 +6,7 @@ import org.junit.Test;
 import ru.job4j.design.srp.report.ReportEngine;
 import ru.job4j.design.srp.store.Employer;
 import ru.job4j.design.srp.store.MemStore;
+import ru.job4j.design.srp.utils.DateFormatter;
 
 import java.util.Calendar;
 
@@ -22,8 +23,8 @@ public class ReportEngineTest {
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
-                .append(worker.getHired()).append(";")
-                .append(worker.getFired()).append(";")
+                .append(DateFormatter.format(worker.getHired())).append(";")
+                .append(DateFormatter.format(worker.getFired())).append(";")
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));

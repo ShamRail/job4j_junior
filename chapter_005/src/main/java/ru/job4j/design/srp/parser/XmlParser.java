@@ -1,6 +1,7 @@
 package ru.job4j.design.srp.parser;
 
 import ru.job4j.design.srp.store.Employer;
+import ru.job4j.design.srp.utils.DateFormatter;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -21,8 +22,8 @@ public class XmlParser implements Parser {
         StringJoiner sj = new StringJoiner(System.lineSeparator());
         sj.add("<employer>");
         sj.add(String.format("<name>%s</name>", employer.getName()));
-        sj.add(String.format("<hired>%s</hired>", employer.getHired()));
-        sj.add(String.format("<fired>%s</fired>", employer.getFired()));
+        sj.add(String.format("<hired>%s</hired>", DateFormatter.format(employer.getHired())));
+        sj.add(String.format("<fired>%s</fired>", DateFormatter.format(employer.getFired())));
         sj.add(String.format("<salary>%s</salary>", employer.getSalary()));
         sj.add("</employer>");
         return sj.toString();

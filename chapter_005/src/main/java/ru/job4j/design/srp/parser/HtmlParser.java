@@ -1,6 +1,7 @@
 package ru.job4j.design.srp.parser;
 
 import ru.job4j.design.srp.store.Employer;
+import ru.job4j.design.srp.utils.DateFormatter;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -29,8 +30,8 @@ public class HtmlParser implements Parser {
         for (Employer employer : employers) {
             html.add("<tr>");
             html.add(String.format("<td>%s</td>", employer.getName()));
-            html.add(String.format("<td>%s</td>", employer.getHired()));
-            html.add(String.format("<td>%s</td>", employer.getFired()));
+            html.add(String.format("<td>%s</td>", DateFormatter.format(employer.getHired())));
+            html.add(String.format("<td>%s</td>", DateFormatter.format(employer.getFired())));
             html.add(String.format("<td>%s</td>", employer.getSalary()));
             html.add("</tr>");
         }

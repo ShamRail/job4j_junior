@@ -1,6 +1,7 @@
 package ru.job4j.design.srp.parser;
 
 import ru.job4j.design.srp.store.Employer;
+import ru.job4j.design.srp.utils.DateFormatter;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -23,9 +24,9 @@ public class JsonParser implements Parser {
                 System.lineSeparator(),
                 employer.getName(),
                 System.lineSeparator(),
-                employer.getHired(),
+                DateFormatter.format(employer.getHired()),
                 System.lineSeparator(),
-                employer.getFired(),
+                DateFormatter.format(employer.getFired()),
                 System.lineSeparator(),
                 employer.getSalary(),
                 System.lineSeparator()

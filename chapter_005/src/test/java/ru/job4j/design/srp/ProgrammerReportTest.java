@@ -5,6 +5,7 @@ import ru.job4j.design.srp.report.ProgrammerReport;
 import ru.job4j.design.srp.report.Report;
 import ru.job4j.design.srp.store.Employer;
 import ru.job4j.design.srp.store.MemStore;
+import ru.job4j.design.srp.utils.DateFormatter;
 
 import java.util.Calendar;
 import java.util.StringJoiner;
@@ -42,8 +43,8 @@ public class ProgrammerReportTest {
 
         html.add("<tr>");
         html.add(String.format("<td>%s</td>", worker.getName()));
-        html.add(String.format("<td>%s</td>", worker.getHired()));
-        html.add(String.format("<td>%s</td>", worker.getFired()));
+        html.add(String.format("<td>%s</td>", DateFormatter.format(worker.getHired())));
+        html.add(String.format("<td>%s</td>", DateFormatter.format(worker.getFired())));
         html.add(String.format("<td>%s</td>", worker.getSalary()));
         html.add("</tr>");
 
