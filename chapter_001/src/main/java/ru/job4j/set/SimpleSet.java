@@ -2,6 +2,7 @@ package ru.job4j.set;
 
 import ru.job4j.generic.SimpleArray;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Iterable<T> {
 
@@ -17,7 +18,7 @@ public class SimpleSet<T> implements Iterable<T> {
     public boolean contains(T data) {
         boolean result = false;
         for (T el : array) {
-            if (el.equals(data)) {
+            if (Objects.equals(el, data)) {
                 result = true;
                 break;
             }

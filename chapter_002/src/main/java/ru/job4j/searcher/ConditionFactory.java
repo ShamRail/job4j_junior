@@ -2,6 +2,7 @@ package ru.job4j.searcher;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 public class ConditionFactory {
 
@@ -10,11 +11,10 @@ public class ConditionFactory {
         Predicate<Path> result = p -> true;
         switch (type.toLowerCase()) {
             case "-f":
-                result = p -> p.toFile().getName().equals(args.pattern());
+                result = new RegexSearchCondition(args.pattern());
                 break;
             case "-m":
-                String s = preparePattern(args.pattern());
-                result = p -> p.toFile().getName().matches(s);
+                result = new RegexSearchCondition(preparePattern(args.pattern()));
                 break;
             case "-r":
                 result = p -> p.toFile().getName().matches(args.pattern());
@@ -23,6 +23,20 @@ public class ConditionFactory {
                 break;
         }
         return result;
+    }
+
+    private static class RegexSearchCondition implements Predicate<Path> {
+
+        private final Pattern pattern;
+
+        public RegexSearchCondition(String name) {
+            this.pattern = Pattern.compile(name);
+        }
+
+        @Override
+        public boolean test(Path path) {
+            return pattern.matcher(path.toFile().getName()).matches();
+        }
     }
 
     private static String preparePattern(String pattern) {
